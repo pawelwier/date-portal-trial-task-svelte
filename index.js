@@ -3,6 +3,7 @@
 
 const PORT = process.env.PORT || 3000;
 
+let cors = require('cors')
 let express = require('express');
 
 let log = require('bunyan').createLogger({
@@ -13,6 +14,7 @@ let log = require('bunyan').createLogger({
 let apiRouter = require('./lib/router');
 
 express()
+  .use(cors())
   .use('/api', (req, res, next) => {
     log.debug(`${req.method} ${req.url}`);
     next();
